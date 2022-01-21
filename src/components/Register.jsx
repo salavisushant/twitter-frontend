@@ -18,6 +18,7 @@ const navigate = useNavigate()
       alert("Passwords don't match!");
     } else {
       const user = {
+        username:userName.current.value,
         name: name.current.value,
         email: email.current.value,
         password: password.current.value,
@@ -34,7 +35,9 @@ const navigate = useNavigate()
         handleToken(res)
         navigate("/home")
       }else if(res.message == " Please provide a different email address"){
-        alert("Please provide a different email address")
+        alert("Please provide a different email address")}
+        else if(res.message == "Please provide a different user name"){
+          alert("Please provide a different user name")
       }else{
         alert("Enter correct details")
       }})
