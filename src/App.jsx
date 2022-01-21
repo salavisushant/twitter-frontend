@@ -3,6 +3,7 @@ import './App.css';
 import Login from './components/Login';
 import { Route, Routes } from 'react-router-dom';
 import Register from './components/Register';
+import { Home } from './components/Home';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path={"/login"} element={<Login />}/>
         <Route path={"/"} element={<Login />}/>
         <Route path={"/register"} element={<Register />} />
+        <Route path={"/home"} element={<Home />}/>
         <Route path={"*"} element={<h1>Page not found</h1>}/>
 
 
