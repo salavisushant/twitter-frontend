@@ -1,8 +1,11 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../contexts/AuthContextProvider";
+import { useNavigate } from "react-router-dom"
 import "./login.css";
 export default function Login() {
     const [form,setForm] = useState({})
+    const{token, handleToken} = useContext(AuthContext)
 
     const handleChange = ({target:{name,value}})=>{
         setForm({
@@ -11,6 +14,9 @@ export default function Login() {
         })
         console.log(form)
     }
+
+    const navigate = useNavigate()
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -43,10 +49,15 @@ export default function Login() {
               body:JSON.stringify(form)
               })
               .then(res => res.json())
-              .then(res => console.log(res))
+              .then(res => {if(res.status == "passed"){
+                handleToken(res)
+                navigate("/home")
+              }else{
+                alert("wrong login details")
+              }})
             }}>Login</button>
+            <button onClick={()=>{navigate("/register")}}>Sign Up</button>
             <span className="loginForgot">Forgot Password?</span>
-              
           </form>
         </div>
       </div>
