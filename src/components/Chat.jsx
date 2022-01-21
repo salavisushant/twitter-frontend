@@ -1,7 +1,25 @@
 
 import "./chat.css"
-export const Chat = ()=>{
+import io from "socket.io-client";
+import {useContext, useEffect, useState} from "react"
+import { AuthContext } from "../contexts/AuthContextProvider";
 
+export const Chat = ()=>{
+    const{token, handleToken} = useContext(AuthContext)
+
+    const socket = io("http://localhost:3001/messages", {
+        transports: ["websocket", "polling"]
+      });
+
+      const [message, setMessage] = useState("");
+      const [messages, setMessages] = useState([]);
+
+      useEffect(() => {
+        socket.on("connect", () => {
+          socket.emit("username", token.user.username);
+        });
+    })
+    console.log(token.user)
     return<div className="header">
         <div style={{fontSize:"25px",textAlign:"left", margin:"10px",width:"100%"}}>Messages</div>
         <div className="chat">
