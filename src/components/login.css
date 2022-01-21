@@ -15,6 +15,28 @@
     display: flex;
     width: 50%;
   }
+  .signupButton{
+    width: 100%;
+      align-self: center;
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: #42b72a;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+  }
+  .loginButton{
+    height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: #1775ee;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+  }
   .loginRight {
     flex: 1;
     display: flex;

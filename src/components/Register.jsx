@@ -1,12 +1,16 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { AuthContext } from "../contexts/AuthContextProvider";
 import "./register.css";
+import { useNavigate } from "react-router-dom"
 
 export default function Register() {
+  const userName = useRef()
   const name = useRef();
   const email = useRef();
   const password = useRef();
   const passwordAgain = useRef();
-
+  const{token, handleToken} = useContext(AuthContext)
+const navigate = useNavigate()
   const handleClick = async (e) => {
     e.preventDefault();
     console.log(passwordAgain.current.value, password.current.value)
@@ -19,17 +23,24 @@ export default function Register() {
         password: password.current.value,
       };
       console.log(user)
-      fetch("https://flipkart-dummy-server.herokuapp.com/register", {
+      fetch("https://twitter-backend1.herokuapp.com/register", {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "content-type": "application/json" }
-      }).then((res) => {
-        res.json();
-      }).then((res) => {
-        alert("user successfully registered");
-      }).catch((e) => {
-        alert("Error :", e);
-      });
+      }).then((res) => 
+        res.json()
+      ).then((res) =>  {
+        if(res.status == "passed"){
+        handleToken(res)
+        navigate("/home")
+      }else if(res.message == " Please provide a different email address"){
+        alert("Please provide a different email address")
+      }else{
+        alert("Enter correct details")
+      }})
+      //.catch((e) => {
+      //   alert("Error :", e);
+      // });
     }
     // try {
     //   await axios.post("/register", user);
@@ -61,8 +72,14 @@ export default function Register() {
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleClick}>
+          <input
+              placeholder="User Name"
+              required
+              ref={userName}
+              className="loginInput"
+            />
             <input
-              placeholder="Username"
+              placeholder="Name"
               required
               ref={name}
               className="loginInput"

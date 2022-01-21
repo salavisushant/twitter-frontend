@@ -24,7 +24,7 @@ export default function Login() {
           <img style={{marginLeft:"-40%",width:"140%",height:"140%"}} src="https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png" alt="" />
         </div>
         <div className="loginRight">
-          <form className="loginBox" >
+          <div className="loginBox" >
             <input
               placeholder="Email"
               type="email"
@@ -42,7 +42,7 @@ export default function Login() {
               className="loginInput"
               onChange={handleChange}
             />
-            <button onClick={()=>{
+            <button className="loginButton" onClick={()=>{
               fetch("https://twitter-backend1.herokuapp.com/login",{
                 method:"POST",
               headers:{"Content-Type":"application/json"},
@@ -56,9 +56,9 @@ export default function Login() {
                 alert("wrong login details")
               }})
             }}>Login</button>
-            <button onClick={()=>{navigate("/register")}}>Sign Up</button>
+            <button className="signupButton" onClick={()=>{navigate("/register")}}>Sign Up</button>
             <span className="loginForgot">Forgot Password?</span>
-          </form>
+          </div>
         </div>
       </div>
     </div>
