@@ -1,61 +1,45 @@
 
 import "./chat.css"
-import io from "socket.io-client";
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 import {useContext, useEffect, useState} from "react"
 import { AuthContext } from "../contexts/AuthContextProvider";
-import moment from "moment";
 
 
 export const Chat = ()=>{
+  const client = new W3CWebSocket('wss://web-chat123.herokuapp.com/');
+
     const{token, handleToken} = useContext(AuthContext)
 
-    const socket = io("http://localhost:3001/", {
-        transports: ["websocket", "polling"]
-      });
-      const [users, setUsers] = useState([]);
-      const [message, setMessage] = useState("");
-      const [messages, setMessages] = useState([]);
-
-      useEffect(() => {
-        socket.on("connection", () => {
-          socket.emit("username", users);
-          
-        });
-    },[])
-    socket.on("message", message => {
-        setMessages(messages => [...messages, message]);
-       
-      });
-  const handlechange = ({target:{name,value}})=>{
-setMessage(value)
-console.log(message)
-  }
-
-  socket.emit("fgebskma")
-      
-    console.log("token.user.username")
+    const [messages, setMessages] = useState([])
+    client.onopen = () => {
+      console.log('WebSocket Client Connected');
+    };
+    client.onmessage = (message) => {
+      const dataFromServer = JSON.parse(message.data);
+      console.log('got reply! ', dataFromServer);
+      if (dataFromServer.type === "message") {
+        
+          setMessages(
+             [...messages,
+            {
+              msg: dataFromServer.msg,
+              user: dataFromServer.user
+            }]
+          )
+        
+      }
+    };
     return<div className="header">
         <div style={{fontSize:"25px",textAlign:"left", margin:"10px",width:"100%"}}>Messages</div>
         <div className="chat">
             <div style={{height:"300px", backgroundColor:"white"}}>
-            {messages?.map(({ user, date, text }, index) => (
-              <div key={index} className="row mb-2">
-                <div className="col-md-3">
-                  {moment(date).format("h:mm:ss a")}
-                </div>
-                <div className="col-md-2">{user?.name}</div>
-                <div className="col-md-2">{text}</div>
-              </div>
-            ))}
+           {messages?.map((u)=>{
+             return <div style={{float:"left"}}> <span style={{fontSize:"20px",fontWeight:"800"}}>{u.user}</span> {u.msg}</div>
+           })}
+           
             </div>
-            <input type="text" onChange={handlechange
-            } style={{width:"80%",height:"25px", float:"left",margin:"5px"}} name="message" />
-            <button onClick={()=>{
-                console.log("chat")
-                socket.on("messages", message);
-                console.log(messages)
-    setMessage("");
-            }}>Send</button>
+            <input type="text" onChange={()=>{}} style={{width:"80%",height:"25px", float:"left",margin:"5px"}} name="message" />
+            <button onClick={()=>{}}>Send</button>
         </div>
     </div>
 }
