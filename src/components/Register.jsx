@@ -42,6 +42,7 @@ const navigate = useNavigate()
       //   alert("Error :", e);
       // });
     }
+  }
     // try {
     //   await axios.post("/register", user);
     //   history.push("/login");
@@ -61,7 +62,7 @@ const navigate = useNavigate()
     //   });​
     //   }
     // };
-  }  
+  
      
 
   return (

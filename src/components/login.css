@@ -1,21 +1,21 @@
 
-.login{
+.loginjaswanth{
     margin-left: 2%;
     margin-top: 16%;
    
     float: left;
 }
-.login input{
+.loginjaswanth input{
     background-color: white;
     margin-top: 20px;
     width: 400px;
     height: 50px;
     border-radius: 50px;
-    font-size: 25px;
+    font-size: 25px
    
     
 }
-.login button{
+.loginjaswanth button{
     background-color: rgb(47, 148, 236);
     border-radius: 50px;
     margin-top: 20px;
@@ -30,7 +30,7 @@
     margin-top: 95%;
 
 }
-.login button:hover {
+.loginjaswanth button:hover {
     background-color: rgb(74, 105, 190);
   }
  

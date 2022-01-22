@@ -1,35 +1,64 @@
-import React, { useEffect, useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, {useContext, useEffect, useState } from "react";
+import { Outlet, Link,useNavigate } from "react-router-dom";
 import "../components/login.css"
-export const UserAuth = () => {
-    const [email, setEmail] = useState("")
-   
-    const [password, setPassword] = useState("")
-    const signup =async()=>{
-        console.log("a")
-     var user= await fetch(`http://localhost:2233/login/:${email}/:${password}`)
-        console.log(user)
-        
+import {AuthContext} from "../contexts/AuthContextProvider"
+export const Login = () => {
+    const [form,setForm] = useState({})
+    const{token, handleToken} = useContext(AuthContext)
+
+    const handleChange = ({target:{name,value}})=>{
+        setForm({
+            ...form,
+            [name]:value
+        })
+        console.log(form)
     }
+
+    const navigate = useNavigate()
   return (
         <div>
             <div>
                 <img style={{ width: "55%", height: "40%", float: "left" }} src={require("./images/Screenshot (417).png")} alt="image" />
             </div>
            
-            <div className="login">
+            <div className="loginjaswanth">
             
             <h1>Happening now</h1>
                 <h4>Join Twitter today.</h4>
-                <input type="email" name="email" value={email}  onChange={(e) => { setEmail(e.target.value) }}></input>
-                <br></br>
-                <input type="password" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></input>
-                <br></br>
-                <button  onClick={signup} >login</button>
-                <br></br>
-                <p>or</p>
-               
-                <Link to="/signup"><button >signup</button></Link> 
+                <input placeholder="Email"
+              type="email"
+              name="email"
+              required
+             
+              onChange={handleChange}
+            />
+            <br></br>
+            <input
+              placeholder="Password"
+              type="password"
+              name="password"
+              required
+              minLength="6"
+            
+              onChange={handleChange}
+            />
+              <br></br>
+            <button onClick={()=>{
+              fetch("https://twitter-backend1.herokuapp.com/login",{
+                method:"POST",
+              headers:{"Content-Type":"application/json"},
+              body:JSON.stringify(form)
+              })
+              .then(res => res.json())
+              .then(res => {if(res.status == "passed"){
+                handleToken(res)
+                navigate("/home")
+              }else{
+                alert("wrong login details")
+              }})
+            }}>Login</button>
+              <br></br>
+            <button  onClick={()=>{navigate("/singnup")}}>Sign Up</button>
             </div>
         </div>
        
