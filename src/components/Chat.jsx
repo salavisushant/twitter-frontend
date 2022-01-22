@@ -11,6 +11,7 @@ export const Chat = ()=>{
     const{token, handleToken} = useContext(AuthContext)
 
     const [messages, setMessages] = useState([])
+    const [message, setMessage] = useState("")
     client.onopen = () => {
       console.log('WebSocket Client Connected');
     };
@@ -29,17 +30,29 @@ export const Chat = ()=>{
         
       }
     };
+
+   const handlechange = (e)=>{
+setMessage(e.target.value)
+console.log(message)
+   }
     return<div className="header">
         <div style={{fontSize:"25px",textAlign:"left", margin:"10px",width:"100%"}}>Messages</div>
         <div className="chat">
             <div style={{height:"300px", backgroundColor:"white"}}>
            {messages?.map((u)=>{
-             return <div style={{float:"left"}}> <span style={{fontSize:"20px",fontWeight:"800"}}>{u.user}</span> {u.msg}</div>
+             return <p style={{float:"left"}}> <span style={{fontSize:"20px",fontWeight:"800"}}>{u.user}</span> {u.msg}</p>
            })}
            
             </div>
-            <input type="text" onChange={()=>{}} style={{width:"80%",height:"25px", float:"left",margin:"5px"}} name="message" />
-            <button onClick={()=>{}}>Send</button>
+            <input type="text" onChange={handlechange} style={{width:"80%",height:"25px", float:"left",margin:"5px"}} name="message" />
+            <button onClick={()=>{
+              client.send(JSON.stringify({
+                type: "message",
+                msg: message,
+                user: token.user.name
+              }));
+              console.log(token)
+            }}>Send</button>
         </div>
     </div>
 }
