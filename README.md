@@ -1,5 +1,5 @@
 
-# UpGrad - Clone
+# Twitter - Clone
 
 >It is a clone of twitter.com. We used HTML, JavaScript, Tailwind CSS, Mongo DB, and Express JS in this Project. We implement features like login, Sign up, Real time chat and posting a tweet.
 
@@ -11,7 +11,7 @@ https://twitter-cloned12.netlify.app/
 ## Contributors
 
 1. Gurdeep Singh
-2. Sushan Salvi
+2. Sushan Salavi
 3. Intezar Khan
 4. Abhishek Singh
 5. Gaddam Jaswanth
