@@ -3,7 +3,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContextProvider";
 import { useNavigate } from "react-router-dom"
 import "./login.css";
-export default function Login() {
+
+
+export const Login=()=> {
     const [form,setForm] = useState({})
     const{token, handleToken} = useContext(AuthContext)
 
@@ -44,13 +46,15 @@ export default function Login() {
             />
             <button className="loginButton" onClick={()=>{
               fetch("https://twitter-backend1.herokuapp.com/login",{
-                method:"POST",
+              method:"POST",
               headers:{"Content-Type":"application/json"},
               body:JSON.stringify(form)
               })
               .then(res => res.json())
-              .then(res => {if(res.status == "passed"){
+              .then(res => {if(res.status === "passed"){
                 handleToken(res)
+                console.log(res)
+                localStorage.setItem("email", res.user.name);
                 navigate("/home")
               }else{
                 alert("wrong login details")

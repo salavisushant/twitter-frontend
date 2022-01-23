@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContextProvider";
 import "./register.css";
 import { useNavigate } from "react-router-dom"
 
-export default function Register() {
+export const Register=()=> {
   const userName = useRef()
   const name = useRef();
   const email = useRef();
@@ -18,8 +18,8 @@ const navigate = useNavigate()
       alert("Passwords don't match!");
     } else {
       const user = {
-        username:userName.current.value,
         name: name.current.value,
+        username:userName.current.value,
         email: email.current.value,
         password: password.current.value,
       };
@@ -31,13 +31,11 @@ const navigate = useNavigate()
       }).then((res) => 
         res.json()
       ).then((res) =>  {
-        if(res.status == "passed"){
+        if(res.status === "passed"){
         handleToken(res)
-        navigate("/home")
-      }else if(res.message == " Please provide a different email address"){
-        alert("Please provide a different email address")}
-        else if(res.message == "Please provide a different user name"){
-          alert("Please provide a different user name")
+        navigate("/login")
+      }else if(res.message === " Please provide a different email address"){
+        alert("Please provide a different email address")
       }else{
         alert("Enter correct details")
       }})
@@ -45,6 +43,7 @@ const navigate = useNavigate()
       //   alert("Error :", e);
       // });
     }
+  }
     // try {
     //   await axios.post("/register", user);
     //   history.push("/login");
@@ -64,7 +63,7 @@ const navigate = useNavigate()
     //   });​
     //   }
     // };
-  }  
+  
      
 
   return (
@@ -112,7 +111,7 @@ const navigate = useNavigate()
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            <button className="loginRegisterButton">Log into Account</button>
+            <button onClick={()=>navigate("/login")} className="loginRegisterButton">Log into Account</button>
           </form>
         </div>
       </div>
