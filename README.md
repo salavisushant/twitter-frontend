@@ -24,6 +24,8 @@
 > &ensp; <img src = "https://cdn.icon-icons.com/icons2/2415/PNG/512/mongodb_plain_wordmark_logo_icon_146423.png" width = "100" height ="100">
 > &ensp; <img src = "https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/064fc70f-5df3-4333-b9d4-f6abe2f946de/react-wp-app8.png" width = "100" height ="100">
 
+## Backend Repository
+https://github.com/gurdeep7/twitter-backend
 
 ## Snapshot from the Built Project
 
