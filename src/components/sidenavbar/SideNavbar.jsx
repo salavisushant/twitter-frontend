@@ -16,7 +16,7 @@ import { Happen } from "../Happen/Happen";
              <NavLink className="side" to="/Profile"><img src="https://img.icons8.com/material-outlined/35/000000/gender-neutral-user.png" alt="" /></NavLink>
              <NavLink className="side" to="/More"><img src="https://img.icons8.com/material-outlined/35/000000/connection-status-off.png" alt="" /></NavLink>
              <NavLink className="side" to="/Tweet"><img style={{ width: "40%", marginLeft: "58%" }} src="https://user-images.githubusercontent.com/87421852/150114309-cd5ca5a0-0943-4510-8480-247ec617e70e.png" alt="" /></NavLink>
-             <NavLink className="side" to="/Accounts"><img style={{ width: "20%", marginLeft: "70%",marginTop:"16%" }} src="https://user-images.githubusercontent.com/87421852/150115885-44bea944-54c9-4ca5-85ca-ab64e505f9f2.png" alt="" /></NavLink>
+             <NavLink className="side" to="/Accounts"><img style={{ width: "20%", marginLeft: "70%",marginTop:"16%" }} src="https://img.icons8.com/office/45/000000/person-male-skin-type-3.png" alt="" /></NavLink>
          </div>
          <div>
             <div className="navbar">

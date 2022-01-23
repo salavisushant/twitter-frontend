@@ -58,7 +58,7 @@ export const TweetBox = ({getTodo}) => {
 
      return (
          <div className="boxTweet">
-        <img style={{ width: "8%", marginLeft: "1%",marginTop:"10%",display: "inline-block",verticalAlign:"top" }} src="https://user-images.githubusercontent.com/87421852/150115885-44bea944-54c9-4ca5-85ca-ab64e505f9f2.png" alt="" />
+        <img style={{ width: "8%", marginLeft: "1%",marginTop:"15%",display: "inline-block",verticalAlign:"top" }} src="https://img.icons8.com/office/45/000000/person-male-skin-type-3.png" alt="" />
         <div>
             <input
             value={input}
