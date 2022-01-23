@@ -29,7 +29,7 @@ https://github.com/gurdeep7/twitter-backend
 
 ## Snapshot from the Built Project
 
-> <img src = "images/login.png" style="width:300px" alt = "Login Page" /> &emsp;
+> <img src = "images/login.png" style="width:300px" alt = "Login Page" />  &emsp;
 > <img src = "images/signup.png" style="width:300px" alt = "Sign Up Page" /> &emsp;
 > <img src = "images/home.png" style="width:300px" alt = "Home Page" />  &emsp;
 > <img src = "images/chat.png" style="width:300px" alt = "Chat Page" /> &emsp;
